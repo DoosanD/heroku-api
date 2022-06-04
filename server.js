@@ -1,38 +1,26 @@
 const express = require("express")();
-const app = express();
+const app = express;
 const PORT = 8000;
 
 const rappers = {
-  "21 savage": {
-    age: 29,
-    birthName: "Shéyaa Bin Abraham-Joseph",
-    birthLocation: "London, England",
-  },
-  "chance the rapper": {
-    age: 29,
-    birthName: "Chancelor Bennett",
-    birthLocation: "Chicago, Illinois",
-  },
-  dylan: {
-    age: 29,
-    birthName: "Dylan",
-    birthLocation: "Dylan",
-  },
+  "21 savage": { age: 29, name: "bin", location: "london" },
+  " chance the dog": { age: 29, name: "chancelor", location: "usa" },
+  "unknown ": { age: 0, name: "unknown", location: "unknown" },
 };
 
 app.get("/", (request, response) => {
   response.sendFile(__dirname + "/index.html");
 });
 
-app.get("/api/:rapperName", (request, response) => {
-  const rappersName = request.params.rapperName.toLowerCase();
-  if (rappers[rappersName]) {
-    response.json(rappers[rappersName]);
-  } else {
-    response.json(rappers["dylan"]);
-  }
+app.get("/api", (request, response) => {
+  //   const rapperName = request.params.name.toLowerCase();
+  //   if (rappers[rapperName]) {
+  response.json(rappers);
+  //   } else {
+  //     response.json(rappers["unknown"]);
+  //   }
 });
 
 app.listen(process.env.PORT || PORT, () => {
-  console.log(`The server is running on port ${PORT}! You better go catch it!`);
+  console.log("its alive");
 });
